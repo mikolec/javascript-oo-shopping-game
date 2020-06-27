@@ -38,7 +38,7 @@ const dateDiff = (date1, date2) => {
   var date2_ms = date2.getTime();
 
   // Calculate the difference in milliseconds
-  var difference_ms = date2_ms - date1_ms;
+  var difference_ms = Math.abs(date2_ms - date1_ms);
 
   // Convert back to days and return
   return Math.round(difference_ms / one_day);
@@ -46,7 +46,7 @@ const dateDiff = (date1, date2) => {
 
 // Here, use Object.defineProperty to create property - daysToExpire
 Object.defineProperty(Product.prototype, "daysToExpire", {
-  get() {
+  get: function () {
     return dateDiff(this.expiryDate, new Date());
   },
 });
